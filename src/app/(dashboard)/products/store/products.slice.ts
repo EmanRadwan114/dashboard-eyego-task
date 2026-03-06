@@ -17,6 +17,7 @@ const productsSlice = createSlice({
     },
     setProducts(state, action) {
       state.cachedProducts = action.payload;
+      state.filteredCachedProducts = action.payload;
     },
     setSelectedCategory(state, action) {
       state.selectedCategory = action.payload;

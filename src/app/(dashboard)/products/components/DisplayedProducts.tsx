@@ -11,19 +11,22 @@ interface IProps {
 
 const DisplayedProducts: React.FC<IProps> = ({ products }) => {
   const dispatch = useAppDispatch();
-  const filteredCachedProducts = useAppSelector(
-    (state) => state.products.filteredCachedProducts,
+  const { filteredCachedProducts, selectedCategory } = useAppSelector(
+    (state) => state.products,
   );
 
   useEffect(() => {
     dispatch(setProducts(products));
   }, []);
 
+  const displayedProducts =
+    selectedCategory === "" ? products : filteredCachedProducts;
+
   return (
     <>
-      {filteredCachedProducts.length > 0 ? (
+      {displayedProducts.length > 0 ? (
         <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {filteredCachedProducts?.map((p) => (
+          {displayedProducts?.map((p) => (
             <ProductCard key={p.id} product={p} />
           ))}
         </div>
