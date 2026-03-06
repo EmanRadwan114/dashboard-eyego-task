@@ -29,4 +29,5 @@ export interface IProductsStore {
   filteredCachedProducts: IProduct[];
   cachedCategories: ICategory[];
   selectedCategory: string;
+  sortByPrice: "asc" | "dsc" | "";
 }

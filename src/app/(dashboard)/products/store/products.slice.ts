@@ -6,6 +6,7 @@ const initialState: IProductsStore = {
   cachedProducts: [],
   filteredCachedProducts: [],
   selectedCategory: "",
+  sortByPrice: "",
 };
 
 const productsSlice = createSlice({
@@ -19,24 +20,39 @@ const productsSlice = createSlice({
       state.cachedProducts = action.payload;
       state.filteredCachedProducts = action.payload;
     },
-    setSelectedCategory(state, action) {
+    filterProductsByCategory(state, action) {
       state.selectedCategory = action.payload;
 
-      // filter products based on selected category
-      const filteredProducts =
-        state.selectedCategory !== ""
-          ? state.cachedProducts.filter(
-              (p) =>
-                p.category.toLocaleLowerCase() ===
-                state.selectedCategory.toLocaleLowerCase(),
-            )
-          : state.cachedProducts;
+      let result = [...state.cachedProducts];
 
-      state.filteredCachedProducts = filteredProducts;
+      if (state.selectedCategory !== "") {
+        result = result.filter(
+          (p) =>
+            p.category.toLocaleLowerCase() ===
+            state.selectedCategory.toLocaleLowerCase(),
+        );
+      }
+
+      result.sort((a, b) =>
+        state.sortByPrice === "asc" ? a.price - b.price : b.price - a.price,
+      );
+
+      state.filteredCachedProducts = result;
+    },
+    sortProductsByPrice(state, action) {
+      state.sortByPrice = action.payload;
+
+      state.filteredCachedProducts.sort((a, b) =>
+        state.sortByPrice === "asc" ? a.price - b.price : b.price - a.price,
+      );
     },
   },
 });
 
-export const { setCategories, setProducts, setSelectedCategory } =
-  productsSlice.actions;
+export const {
+  setCategories,
+  setProducts,
+  filterProductsByCategory,
+  sortProductsByPrice,
+} = productsSlice.actions;
 export default productsSlice.reducer;

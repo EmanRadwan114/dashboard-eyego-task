@@ -1,5 +1,6 @@
 import DisplayedProducts from "./components/DisplayedProducts";
 import ProductsFilter from "./components/ProductsFilter";
+import ProductsSortByPrice from "./components/ProductsSortByPrice";
 import { getAllCategories } from "./services/categories.services";
 import { getProducts } from "./services/products.services";
 
@@ -19,8 +20,9 @@ export default async function ProductsPage() {
 
   return (
     <div className="space-y-8 w-full">
-      <header className="px-4 py-6 flex flex-col md:flex-row gap-4 bg-white shadow-md rounded-md">
+      <header className="px-4 py-6 flex flex-col md:flex-row md:justify-between items-center gap-4 bg-white shadow-md rounded-md">
         <ProductsFilter categories={categoriesData} />
+        <ProductsSortByPrice />
       </header>
 
       <DisplayedProducts products={productsData} />

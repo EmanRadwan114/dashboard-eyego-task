@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { ICategory } from "../types/categories.types";
 import { useAppDispatch } from "@/lib/redux-toolkit/hooks";
-import { setSelectedCategory } from "../store/products.slice";
+import { filterProductsByCategory } from "../store/products.slice";
 
 interface IProps {
   categories: ICategory[];
@@ -16,7 +16,8 @@ const ProductsFilter: React.FC<IProps> = ({ categories }) => {
     e: React.ChangeEvent<HTMLSelectElement, HTMLSelectElement>,
   ) => {
     setCategory(e.target.value);
-    dispatch(setSelectedCategory(e.target.value));
+    dispatch(filterProductsByCategory(e.target.value));
+    console.log(e.target.value);
   };
 
   return (
@@ -25,9 +26,7 @@ const ProductsFilter: React.FC<IProps> = ({ categories }) => {
       onChange={handleCategoryChange}
       className="outline outline-gray-500 rounded-md p-2 focus-within:ring-2 focus-within:ring-foreground focus-within:outline-offset-4 w-full"
     >
-      <option value="" disabled>
-        -- Select Category --
-      </option>
+      <option value="">All Categories</option>
       {categories?.map((c) => (
         <option value={c.slug} key={c.slug}>
           {c.name}

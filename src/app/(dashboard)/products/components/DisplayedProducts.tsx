@@ -11,16 +11,17 @@ interface IProps {
 
 const DisplayedProducts: React.FC<IProps> = ({ products }) => {
   const dispatch = useAppDispatch();
-  const { filteredCachedProducts, selectedCategory } = useAppSelector(
-    (state) => state.products,
-  );
+  const { filteredCachedProducts, selectedCategory, sortByPrice } =
+    useAppSelector((state) => state.products);
 
   useEffect(() => {
     dispatch(setProducts(products));
   }, []);
 
   const displayedProducts =
-    selectedCategory === "" ? products : filteredCachedProducts;
+    selectedCategory === "" && sortByPrice === ""
+      ? products
+      : filteredCachedProducts;
 
   return (
     <>
