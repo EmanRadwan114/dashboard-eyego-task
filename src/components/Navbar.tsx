@@ -8,7 +8,10 @@ const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const navLinks = [{ href: "/dashboard", label: "Home" }];
+  const navLinks = [
+    { href: "/dashboard", label: "Home" },
+    { href: "/products", label: "Products" },
+  ];
 
   // handlers
   const handleCloseMobileNav = () => {
@@ -17,7 +20,7 @@ const Navbar: React.FC = () => {
 
   // desktop sidebar
   const desktopNav = (
-    <aside className="hidden lg:block w-64 bg-gray-800 text-white h-screen px-4 py-8">
+    <aside className="hidden lg:block fixed inset-s-0 bottom-0 top-0 w-64 bg-gray-800 text-white h-screen px-4 py-8">
       <h2 className="text-2xl font-bold mb-4 border-b border-gray-500 pb-4">
         Admin Dashboard
       </h2>
@@ -58,7 +61,7 @@ const Navbar: React.FC = () => {
           onClick={handleCloseMobileNav}
         >
           <div
-            className={`absolute top-0 left-0 right-0 bg-white p-4 w-60 h-screen ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-500`}
+            className={`absolute top-0 left-0 right-0 bg-white p-4 w-64 h-screen ${isOpen ? "translate-x-0" : "-translate-x-full"} transition-transform duration-500`}
             onClick={(e) => e.stopPropagation()}
           >
             <X

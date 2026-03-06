@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import productsReducer from "@/app/(dashboard)/dashboard/store/products.slice";
+import productsReducer from "@/app/(dashboard)/products/store/products.slice";
 
 export const makeStore = () => {
   return configureStore({

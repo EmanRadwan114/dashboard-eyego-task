@@ -35,3 +35,19 @@ body {
     transform: rotate(360deg);
   }
 }
+
+/* scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--foreground);
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--background);
+}
