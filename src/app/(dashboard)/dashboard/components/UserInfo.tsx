@@ -1,5 +1,5 @@
 "use client";
-import { auth } from "@/lib/firebase/firebase.config";
+import { auth } from "@/lib/firebase/firebase.config.client";
 import React, { useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useRef } from "react";
