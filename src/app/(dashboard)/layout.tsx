@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Dashboard",
-  description: "Dashboard for eyego task",
+  description: "Dashboard for monitoring products",
 };
 
 export default function DashboardLayout({

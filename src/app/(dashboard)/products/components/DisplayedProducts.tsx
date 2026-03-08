@@ -1,14 +1,16 @@
 "use client";
 import React, { useEffect } from "react";
 import { IProduct } from "../types/products.types";
-import ProductCard from "./ProductCard";
 import { useAppDispatch, useAppSelector } from "@/lib/redux-toolkit/hooks";
 import { setProducts } from "../store/products.slice";
 import Pagination from "./Pagination";
+import ProductRow from "./ProductRow";
 
 interface IProps {
   products: IProduct[];
 }
+
+const items = ["image", "title", "description", "category", "Status", "price"];
 
 const DisplayedProducts: React.FC<IProps> = ({ products }) => {
   const dispatch = useAppDispatch();
@@ -34,10 +36,28 @@ const DisplayedProducts: React.FC<IProps> = ({ products }) => {
     <>
       {displayedProducts.length > 0 ? (
         <>
-          <div className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-            {displayedProducts?.slice(0, 20).map((p) => (
-              <ProductCard key={p.id} product={p} />
-            ))}
+          <div className="shadow-sm rounded-md border border-neutral-200 overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="min-w-full divide-y divide-neutral-200 table-fixed border-spacing-2">
+                <thead className="bg-foreground uppercase text-white">
+                  <tr className="p-4 rounded-t-md">
+                    {items.map((item) => (
+                      <th
+                        className="font-normal px-6 py-3 text-sm tracking-wider text-center w-1/12"
+                        key={item}
+                      >
+                        {item}
+                      </th>
+                    ))}
+                  </tr>
+                </thead>
+                <tbody className="bg-white divide-y divide-neutral-200 text-center">
+                  {displayedProducts?.slice(0, 20).map((p) => (
+                    <ProductRow key={p.id} product={p} />
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
           <Pagination />
         </>

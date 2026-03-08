@@ -26,7 +26,7 @@ const Pagination: React.FC = () => {
   if (filteredCachedProducts.length <= limit) return null;
 
   return (
-    <div className="flex gap-2 items-center justify-center">
+    <div className="flex gap-2 items-center justify-center flex-wrap">
       <Button
         onClick={() => handlePageChange(currentPage - 1)}
         className={`${btnStyle} hover:bg-gray-100 bg-white shadow-sm`}

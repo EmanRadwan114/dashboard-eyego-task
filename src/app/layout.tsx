@@ -11,7 +11,7 @@ const robotoFont = Roboto({
 
 export const metadata: Metadata = {
   title: "Admin Dashboard",
-  description: "Admin Dashboard for eyego task",
+  description: "Admin Dashboard to monitor products",
 };
 
 export default function RootLayout({
